@@ -1,0 +1,12 @@
+1)create database college;
+2)use college;
+3)a.create table Employee(emp_no varchar(10),emp_name varchar(10),dob date,address text,moblie int(10),dep_no varchar(20),salary int);
+  b.create table departement(dept_no varchar(10),dept_name varchar(10),location varchar(10));
+4) show tables;
+5) desc Employee;
+   desc departement;
+6)alter table Employee add(desgination varchar(10));
+7)alter table Employee add(desgination varchar(10));
+
+
+  
