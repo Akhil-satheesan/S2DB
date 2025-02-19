@@ -1,0 +1,37 @@
+-- 1. Create Persons table with constraints
+CREATE TABLE Persons (
+    PersonID INT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    Aadhar NUMERIC NOT NULL UNIQUE,
+    Age INT CHECK (Age > 18)
+);
+
+-- 2. Create Orders table with constraints
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    OrderNumber INT NOT NULL,
+    PersonID INT,
+    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
+);
+
+-- 3. Display the structure of the Persons table
+DESC Persons;
+
+-- 4. Display the structure of the Orders table
+DESC Orders;
+
+-- 5. Add emp_no as the primary key of the Employee table
+ALTER TABLE Employee ADD PRIMARY KEY (emp_no);
+
+-- 6. Add dept_no as the primary key of the Department table
+ALTER TABLE Department ADD PRIMARY KEY (dept_no);
+
+-- 7. Add dept_no in Employee table as a foreign key referencing Department
+--    with ON DELETE CASCADE
+ALTER TABLE Employee 
+ADD CONSTRAINT fk_dept FOREIGN KEY (dept_no) 
+REFERENCES Department(dept_no) 
+ON DELETE CASCADE;
+
+-- 8. Drop the primary key of the Orders table
+ALTER TABLE Orders DROP PRIMARY KEY;
