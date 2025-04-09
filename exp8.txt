@@ -1,0 +1,138 @@
+
+test> use inventory
+switched to db inventory
+4.create a collection named products and insert documents
+inventory> db.products.insertMany([
+...   {
+...     "_id": 1,
+...     "name": "Phone",
+...     "price": 799,
+...     "releaseDate": ISODate("2011-05-24"),
+...     "spec": {
+...       "ram": 4, "screen": 6.5, "cpu": 2.66,
+...       "color": ["white", "black"],
+...       "storage": [64, 128, 256]
+...     }
+...   },
+...   {
+...     "_id": 2,
+...     "name": "Tablet",
+...     "price": 799,
+...     "releaseDate": ISODate("2011-09-01"),
+...     "spec": {
+...       "ram": 16, "screen": 9.5, "cpu": 3.66,
+...       "color": ["white", "black", "purple"],
+...       "storage": [128, 256, 512]
+...     }
+...   },
+...   {
+...     "_id": 3,
+...     "name": "SmartPhone",
+...     "price": 899,
+...     "releaseDate": ISODate("2022-01-14"),
+...     "spec": {
+...       "ram": 12, "screen": 9.7, "cpu": 1.66,
+...       "color": ["blue"],
+...       "storage": [16, 64, 128]
+...     }
+...   }
+
+5.Display all documents
+inventory> db.products.find()
+[
+  {
+    _id: 1,
+    name: 'Phone',
+    price: 799,
+    releaseDate: ISODate('2011-05-24T00:00:00.000Z'),
+    spec: {
+      ram: 4,
+      screen: 6.5,
+      cpu: 2.66,
+      color: [ 'white', 'black' ],
+      storage: [ 64, 128, 256 ]
+    }
+  },
+  {
+    _id: 2,
+    name: 'Tablet',
+    price: 799,
+    releaseDate: ISODate('2011-09-01T00:00:00.000Z'),
+    spec: {
+      ram: 16,
+      screen: 9.5,
+      cpu: 3.66,
+      color: [ 'white', 'black', 'purple' ],
+      storage: [ 128, 256, 512 ]
+    }
+  },
+  {
+    _id: 3,
+    name: 'SmartPhone',
+    price: 899,
+    releaseDate: ISODate('2022-01-14T00:00:00.000Z'),
+    spec: {
+      ram: 12,
+      screen: 9.7,
+      cpu: 1.66,
+      color: [ 'blue' ],
+      storage: [ 16, 64, 128 ]
+    }
+  }
+]
+
+6.Diplay all details of product with id=3
+inventory> db.products.find({_id:3})
+[
+  {
+    _id: 3,
+    name: 'SmartPhone',
+    price: 899,
+    releaseDate: ISODate('2022-01-14T00:00:00.000Z'),
+    spec: {
+      ram: 12,
+      screen: 9.7,
+      cpu: 1.66,
+      color: [ 'blue' ],
+      storage: [ 16, 64, 128 ]
+    }
+  }
+]
+7.Display  the first document
+inventory> db.products.findOne()
+{
+  _id: 1,
+  name: 'Phone',
+  price: 799,
+  releaseDate: ISODate('2011-05-24T00:00:00.000Z'),
+  spec: {
+    ram: 4,
+    screen: 6.5,
+    cpu: 2.66,
+    color: [ 'white', 'black' ],
+    storage: [ 64, 128, 256 ]
+  }
+}
+8.Display only name and price  of id=2
+inventory>  db.products.find({_id:2},{name:1,price:1})
+[ { _id: 2, name: 'Tablet', price: 799 } ]
+9.find products with price=799
+[
+  {
+    _id: 2,
+    name: 'Tablet',
+    price: 799,
+    releaseDate: ISODate('2011-09-01T00:00:00.000Z'),
+    spec: {
+      ram: 16,
+      screen: 9.5,
+      cpu: 3.66,
+      color: [ 'white', 'black', 'purple' ],
+      storage: [ 128, 256, 512 ]
+    }
+  }
+]
+
+10.Delete product with id=1
+ db.products.deleteOne({_id:1})
+{ acknowledged: true, deletedCount: 1 }
